@@ -96,7 +96,7 @@ namespace DependencyInjectorUnitTests
             var provider = new DependencyProvider(dependencies);
             var service3 = provider.Resolve<IService>();
 
-            Assert.IsNotNull(service3);
+            Assert.AreEqual((service3 as ServiceImpl3).rep.ToArray()[0].TestObject(), "RepositoryImpl is created");
         }
 
         [TestMethod]

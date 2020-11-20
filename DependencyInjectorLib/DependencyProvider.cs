@@ -121,8 +121,12 @@ namespace DependencyInjectionLib
             for (int i = 0; i < parameters.Length; i++)
             {
                 var param = config.GetConfiguratedType(parameters[i].ParameterType);
-                if (param!=null)
-                    parametersValues[i] = GetInstance(param.Interface);
+                Type paramType = null;
+                if (param != null)
+                    paramType = param.Interface;
+                else
+                    paramType = parameters[i].ParameterType;
+                parametersValues[i] = GetInstance(paramType);
                 
             }
 

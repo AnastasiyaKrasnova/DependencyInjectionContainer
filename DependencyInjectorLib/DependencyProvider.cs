@@ -24,15 +24,16 @@ namespace DependencyInjectionLib
 
         private object GetInstance(Type DependencyType)
         {
-            if (typeof(IEnumerable).IsAssignableFrom(DependencyType))
+            if (typeof(IEnumerable).IsAssignableFrom(DependencyType) && DependencyType.IsGenericType)
             {
                 var collection = CreateIEnumerable(DependencyType);
                 return collection;
             }
-            else if (DependencyType.IsGenericType)
+            else if (DependencyType.IsGenericType && config.GetConfiguratedType(DependencyType)==null)
             {
                 Type Implementation = ImplementaionForOpenGeneric(DependencyType);
-                return Create(config.GetConfiguratedType(DependencyType), Implementation);
+                ConfigType conftype = config.GetConfiguratedType(DependencyType.GetGenericTypeDefinition());
+                return Create(conftype, Implementation);
             }
             else if (config.GetConfiguratedType(DependencyType)!=null)
             {
@@ -66,6 +67,7 @@ namespace DependencyInjectionLib
             Type Implementation = null;
             if (extraImpl == null)
                 Implementation = config_type.Implementation;
+
             else
                 Implementation = extraImpl;
 
@@ -85,13 +87,12 @@ namespace DependencyInjectionLib
                     ResultObject = Activator.CreateInstance(Implementation, parameters);
                     isCreated = true;
                 }
-                catch
+                catch(Exception e)
                 {
                     isCreated = false;
-                    ctorNum++;
+                    ctorNum++; 
                 }
             }
-
             if (config_type.IsSingleton && !ImplementationInstances.ContainsKey(Implementation))
                 if (!ImplementationInstances.TryAdd(Implementation, ResultObject))
                     return ImplementationInstances[Implementation];
@@ -105,10 +106,6 @@ namespace DependencyInjectionLib
             var Implementation = config.GetConfiguratedType(DependencyType.GetGenericTypeDefinition()).Implementation;
             if (Implementation != null)
             {
-                if (config.GetConfiguratedType(arg) != null)
-                {
-                    return Implementation.MakeGenericType(config.GetConfiguratedType(arg).Implementation);
-                }
                 return Implementation.MakeGenericType(arg);
             }
             else return null;
@@ -123,7 +120,10 @@ namespace DependencyInjectionLib
 
             for (int i = 0; i < parameters.Length; i++)
             {
-                parametersValues[i] = GetInstance(config.GetConfiguratedType(parameters[i].ParameterType).Interface);
+                var param = config.GetConfiguratedType(parameters[i].ParameterType);
+                if (param!=null)
+                    parametersValues[i] = GetInstance(param.Interface);
+                
             }
 
             return parametersValues;

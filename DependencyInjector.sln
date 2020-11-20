@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyInjectorLib", "DependencyInjectorLib\DependencyInjectorLib.csproj", "{B753A415-DCCF-4FD9-A5AA-169FEB476E22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDILib", "TestDILib\TestDILib.csproj", "{9C88938E-2A2D-4CBD-B62A-62D07C401B09}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyInjectorUnitTests", "DependencyInjectorUnitTests\DependencyInjectorUnitTests.csproj", "{F3B7A09A-F760-49F2-91AE-D5F8790288D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{B753A415-DCCF-4FD9-A5AA-169FEB476E22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B753A415-DCCF-4FD9-A5AA-169FEB476E22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B753A415-DCCF-4FD9-A5AA-169FEB476E22}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9C88938E-2A2D-4CBD-B62A-62D07C401B09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9C88938E-2A2D-4CBD-B62A-62D07C401B09}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9C88938E-2A2D-4CBD-B62A-62D07C401B09}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9C88938E-2A2D-4CBD-B62A-62D07C401B09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3B7A09A-F760-49F2-91AE-D5F8790288D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3B7A09A-F760-49F2-91AE-D5F8790288D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3B7A09A-F760-49F2-91AE-D5F8790288D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3B7A09A-F760-49F2-91AE-D5F8790288D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
